@@ -1,3 +1,22 @@
 go mod init github.com/railanderreis/codebank
 
 docker exec -it appbank bash
+
+go run main.go
+
+
+
+	cc := domain.NewCreditCard()
+	cc.Number = "1234"
+	cc.Name = "Wesley"
+	cc.ExpirationYear = 2021
+	cc.ExpirationMonth = 7
+	cc.CVV = 123
+	cc.Limit = 1000
+	cc.Balance = 0
+
+	repo := repository.NewTransactionRepositoryDb(db)
+	err := repo.CreateCreditCard(*cc)
+	if err != nil {
+		fmt.Println(err)
+	}
